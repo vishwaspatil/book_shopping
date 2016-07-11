@@ -12,8 +12,8 @@ two:
   image_url: MyString
   price: 9.99
 
- # value1:
- #  title: vishwas
- #  description: this is vishwas book
- #  image_url: vish.jpg
- #  price: 200
+value1:
+  title: vishwas
+  description: this is vishwas book
+  image_url: vish.jpg
+  price: 200

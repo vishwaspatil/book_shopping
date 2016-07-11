@@ -7,4 +7,6 @@ class Product < ActiveRecord::Base
 	validates :title, :uniqueness => {:message => "Title already exists."}
 	validates :image_url, format: {with: /\.(png|jpg)\Z/i}
 
+	scope :sorted, lambda { order("store.title ASC") }
+
 end
