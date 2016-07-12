@@ -7,7 +7,10 @@
 <ul>
 	<% @cart.line_items.each do |item| %> 
 	<li>
-		<%= item.product.title %>
+		<%= item.product.title %>  &times  <%= item.quantity %>
+	</li>
+	<li>
+		<%= number_to_currency(item.product.price, :unit => "$") %>
 	</li>
 	<% end %> 
 </ul>

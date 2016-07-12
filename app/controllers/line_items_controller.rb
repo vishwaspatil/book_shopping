@@ -30,13 +30,23 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
 
+    @cart = current_cart
 
+    puts "-----#{@cart.inspect}"
 
-    @line_item = LineItem.new(:product_id => params[:product_id] ,:cart_id => session[:cart_id])
+    @line_item = @cart.line_items.find_by(:product_id => params[:product_id])
 
+     puts "-----#{@line_item.inspect}"
+    
+    if @line_item.present?
+       @line_item.update_attributes(:quantity => (@line_item.quantity.to_i + 1).to_s  )
+    else
+        @cart.line_items.create!(:product_id => params[:product_id])
+    end 
+    
     respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: 'Line item was successfully created.' }
+      if @cart
+        format.html { redirect_to @cart, notice: 'Line item was successfully created.' }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
