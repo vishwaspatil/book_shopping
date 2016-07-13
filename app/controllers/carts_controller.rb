@@ -1,4 +1,10 @@
 class CartsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, :with => :render_404
+  # Render 404 page when record not found
+    def render_404          
+       render :file => "public/404.html", :status => 404
+    end  
+
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
@@ -10,6 +16,7 @@ class CartsController < ApplicationController
   # GET /carts/1
   # GET /carts/1.json
   def show
+    
   end
 
   # GET /carts/new
@@ -54,10 +61,12 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
-    @cart.destroy
+    @cart.destroy if @cart.id == session[:cart_id]
+    session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
-      format.json { head :no_content }
+    format.html { redirect_to root_url,
+    notice: 'Your cart is empty' }
+    format.json { head :no_content }
     end
   end
 

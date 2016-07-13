@@ -3,17 +3,44 @@
 <% end %>
 <h2>
 	Your Pragmatic Cart
-</h2> 
-<ul>
-	<% @cart.line_items.each do |item| %> 
-	<li>
-		<%= item.product.title %>  &times  <%= item.quantity %>
-	</li>
-	<li>
-		<%= number_to_currency(item.product.price, :unit => "$") %>
-	</li>
-	<% end %> 
-</ul>
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', root_path %>
+</h2>
 
+
+	<table border="0" width="50%" height="50%">
+		<% @cart.line_items.each do |item| %> 
+		<tr>
+			<td>
+				<%= item.quantity %> * <%= item.product.title %>
+			</td>
+			<td>
+				<%= number_to_currency(item.total_price, :unit => "$") %>
+			</td>
+
+		</tr>
+
+		<% end %>
+		<tr>
+			<td></td>
+			<td>---------</td>			
+		</tr>
+		<tr>
+			<td>
+				Total
+			</td>			
+			<td>
+				<%= number_to_currency(@cart.total_price, :unit => "$" ) %>
+			</td>
+		</tr>
+	</table>
+
+	<%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?'} %>
+
+	<%= link_to 'Edit', edit_cart_path(@cart) %> |
+	<%= link_to 'Back', root_path %>
+
+	
+
+	
+
+<!-- > add button in carts/show view which will empty cart and redirect to store_url with notice .(for this you need to define destroy action in carts 
+  controller) -->
