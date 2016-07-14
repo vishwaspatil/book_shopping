@@ -16,6 +16,9 @@
 		</div>
 		<div id="columns">
 			<div id="side"> 
+				<div id="cart">
+        			<%= render :partial => 'carts/cart' %>
+				</div>
 				<ul>
 					<li>
 						<a href="http://www....">Home</a>
@@ -29,8 +32,9 @@
 					<li>
 						<a href="http://www..../contact">Contact</a>
 					</li>
-				</ul> 
-				<%= render 'cart' %>
+				</ul> 			
+				
+			
 			</div>
 			<div id="main"> 
 				<%= yield %>

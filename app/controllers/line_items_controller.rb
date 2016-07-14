@@ -41,13 +41,16 @@ class LineItemsController < ApplicationController
     if @line_item.present?
        @line_item.update_attributes(:quantity => (@line_item.quantity.to_i + 1).to_s  )
     else
-        @cart.line_items.create!(:product_id => params[:product_id])
+        @line_item = LineItem.new(:product_id => params[:product_id] , :cart_id => @cart.id)
+        @line_item.save  
     end 
     
     respond_to do |format|
       if @cart
-        format.html { redirect_to @cart, notice: 'Line item was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Line item was successfully created.' }
+        format.js { @current_item = @line_item }
         format.json { render :show, status: :created, location: @line_item }
+        
       else
         format.html { render :new }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
