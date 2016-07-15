@@ -1,4 +1,4 @@
-<% unless @cart.line_items.empty? %>
+ <% unless @cart.line_items.empty? %>
 	<h2 class="cart_title">
 		Your Pragmatic Cart
 	</h2>
@@ -14,4 +14,6 @@
 		</tr>
 		</table>
 		<%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?'}  %>
+		<%= button_to 'checkout', new_order_path, {:method => :get} %>
+		
 <% end %>

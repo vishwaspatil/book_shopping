@@ -34,12 +34,12 @@ class LineItemsController < ApplicationController
 
     puts "-----#{@cart.inspect}"
 
-    @line_item = @cart.line_items.find_by(:product_id => params[:product_id])
+    @line_item = @cart.line_items.find_by(:product_id => params[:product_id]) 
 
-     puts "-----#{@line_item.inspect}"
+    puts "-----#{@line_item.inspect}"
     
     if @line_item.present?
-       @line_item.update_attributes(:quantity => (@line_item.quantity.to_i + 1).to_s  )
+       @line_item.update_attributes(:quantity => (@line_item.quantity.to_i + 1).to_s)
     else
         @line_item = LineItem.new(:product_id => params[:product_id] , :cart_id => @cart.id)
         @line_item.save  

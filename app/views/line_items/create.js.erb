@@ -3,3 +3,15 @@ $('#cart').html("<%=j render @cart %>");
 
 $('#current_item').css({'background-color':'#88ff88'}).animate({'background-color':'#114411'}, 1000);
 
+
+
+
+
+
+
+// > capturing the order delails(i.e implement the create action of order controller.) 
+// 	1) Capture the values from the form to populate a new Order model object.
+// 	2)Add the line items from our cart to that order.
+// 	3)validate and save the order.If this fails, display the appropriate messages and let the user correct any problems.
+// 	4)Once the order is successfully saved,delete the cart,redisplay the catalog page, and display a message confirming that the line item to 
+// 	  the order.
