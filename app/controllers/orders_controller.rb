@@ -15,11 +15,11 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
 
-  end
+    end
 
   # GET /orders/new
   def new
-    
+   puts "----------------------#{params.inspect}" 
     puts "this is the value of cart#{@cart.line_items.inspect}"
     if @cart.line_items.empty?
        render root_url     
@@ -38,7 +38,12 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)    
 
     respond_to do |format|
+
       if @order.save
+        puts "-----------------------#{@cart.line_items}*****************"
+        @line_item1 = @cart.line_items.where(:cart_id => session[:cart_id])
+   
+        @line_item1.update_all(order_id:  @order.id)
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         
         format.json { render :show, status: :created, location: @order }
