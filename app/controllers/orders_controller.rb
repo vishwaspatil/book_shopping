@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
         @line_item1 = @cart.line_items.where(:cart_id => session[:cart_id])
    
         @line_item1.update_all(order_id:  @order.id)
+        session[:cart_id] = nil
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         
         format.json { render :show, status: :created, location: @order }
