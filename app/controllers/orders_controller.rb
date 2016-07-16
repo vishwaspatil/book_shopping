@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
    
         @line_item1.update_all(order_id:  @order.id)
         session[:cart_id] = nil
+        flash[:notice] = "Thank you for purchase..."
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         
         format.json { render :show, status: :created, location: @order }

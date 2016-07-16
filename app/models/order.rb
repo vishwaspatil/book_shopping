@@ -4,5 +4,4 @@ class Order < ActiveRecord::Base
 	PAYMENT = ['check', 'credit card', 'purchase order']
 	
 	validates :name, :email, :address, :pay_type,  presence:  :true
-	
 end
