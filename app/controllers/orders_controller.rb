@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  require 'CreateCart'
+
   include CreateCart 
   
   before_action :set_order, only: [:show, :edit, :update, :destroy]
