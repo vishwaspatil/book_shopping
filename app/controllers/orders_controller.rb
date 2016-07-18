@@ -45,6 +45,10 @@ class OrdersController < ApplicationController
    
         @line_item1.update_all(order_id:  @order.id)
         session[:cart_id] = nil
+        puts "***************************************************************************"
+        OrderNotifier.received(@order).deliver_now
+        puts "*************************************************************************** "
+
         flash[:notice] = "Thank you for purchase..."
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         
