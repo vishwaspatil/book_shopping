@@ -21,20 +21,27 @@
         				<%= render :partial => 'carts/cart' %>
 					</div>
 				<% end %>
-				<ul>
+				
+				<% if session[:user_id]!=nil %>
+
+					<ul>
+					
 					<li>
-						<a href="http://www....">Home</a>
-					</li>
-					<li>
-						<a href="http://www..../faq">Questions</a>
-					</li> 
-					<li>
-						<a href="http://www..../news">News</a>
-					</li> 
-					<li>
-						<a href="http://www..../contact">Contact</a>
-					</li>
+									<%= link_to "Products", root_path %>
+								</li>
+								<li>
+									<%= link_to "Your orders", orders_path(@order) %>
+								</li> 
+								<li>
+									<%= link_to "Users", admins_path(@admin) %>
+								</li> 
+								<li><%= link_to "Log Out", session_path(session[:user_id]), :method => 'delete' %></li>
+					
 				</ul> 			
+				<% else %>
+							<ul><li></li></ul>
+				<% end %>
+
 				
 			
 			</div>
