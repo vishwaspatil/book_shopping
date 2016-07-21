@@ -30,6 +30,11 @@ gem 'autoprefixer-rails'
 # Use ActiveModel has_secure_password
  gem 'bcrypt'
 
+ #gem for active admin
+gem 'activeadmin', github: 'activeadmin'
+
+#gem 'layout-generator', '~> 0.1'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

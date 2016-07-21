@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class WelcomeController < BaseController
   def index
   	@orders = Order.all
   end

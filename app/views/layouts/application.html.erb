@@ -9,8 +9,7 @@
 		<%= csrf_meta_tag %>
 	</head>
 	<body class="<%= controller.controller_name %>">
-	 
-		<div id="banner">
+	 	<div id="banner">
 			<%= image_tag("logo.png", height: '50', width: '120')  %>
 			<%= @page_title || "Pragmatic Bookshelf" %>
 		</div>
@@ -21,29 +20,22 @@
         				<%= render :partial => 'carts/cart' %>
 					</div>
 				<% end %>
-				
 				<% if session[:user_id]!=nil %>
-
 					<ul>
-					
-					<li>
-									<%= link_to "Products", root_path %>
-								</li>
-								<li>
-									<%= link_to "Your orders", orders_path(@order) %>
-								</li> 
-								<li>
-									<%= link_to "Users", admins_path(@admin) %>
-								</li> 
-								<li><%= link_to "Log Out", session_path(session[:user_id]), :method => 'delete' %></li>
-					
-				</ul> 			
+						<li>
+							<%= link_to "Products", root_path %>
+						</li>
+						<li>
+							<%= link_to "Your orders", orders_path(@order) %>
+						</li> 
+						<li>
+							<%= link_to "Users", admins_path(@admin) %>
+						</li> 
+						<li><%= link_to "Log Out", session_path(session[:user_id]), :method => 'delete' %></li>
+					</ul> 			
 				<% else %>
 							<ul><li></li></ul>
 				<% end %>
-
-				
-			
 			</div>
 			<div id="main"> 
 				<%= yield %>

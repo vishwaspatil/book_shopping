@@ -1,4 +1,4 @@
-<h1>Login</h1>
+<h1>Please login to order </h1>
 
   
 <%= form_tag :action => :create do %>
@@ -10,4 +10,7 @@
 
 <%= submit_tag "Login"  %>
 <% end %>
+<br><br>
+
+<%= link_to "Sign up", new_admin_path,{:method => :get} %>
 

@@ -1,4 +1,4 @@
-class CartsController < ApplicationController
+class CartsController < BaseController
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   # Render 404 page when record not found
     def render_404          

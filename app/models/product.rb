@@ -7,7 +7,14 @@ class Product < ActiveRecord::Base
 	validates :title, :uniqueness => {:message =>  " already exsits"} , presence: true
     validates :description , presence: true
     validates :image_url , presence: true , format: {with: /\.(png|jpg)\Z/i}
-    validates :price, :numericality => { :greater_than => 0.01  } 
+    validates :price, :numericality => { :greater_than_or_equal_to => 0.01, :less_than_or_equal_to => 20000 } 
+
+
+
+    #  validates_numericality_of :age, 
+    # :less_than_or_equal_to => 100, 
+    # :greater_than_or_equal_to => 18, 
+    # :only_integer => true
 
     # validates :login, :email, presence: true
  
