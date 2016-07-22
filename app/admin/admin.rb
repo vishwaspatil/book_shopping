@@ -1,6 +1,6 @@
 ActiveAdmin.register Admin do 
 
-before_filter :authenticate_user!, :except => [:show, :index]
+
 	permit_params :name, :password, :password_confirmation
 
 # See permitted parameters documentation:
