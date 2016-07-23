@@ -36,6 +36,11 @@ gem 'activeadmin', github: 'activeadmin'
 #gem for internationlization
 gem 'i18n', '~> 0.7.0' 
 
+#gem for HAML
+gem 'haml', '~> 4.0', '>= 4.0.7'
+
+#gem for Pagination
+gem 'kaminari', '~> 0.17.0'
 #gem 'layout-generator', '~> 0.1'
 
 # Use Unicorn as the app server

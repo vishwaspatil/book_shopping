@@ -29,5 +29,7 @@
 </table>
 
 <br>
+ <%= paginate @orders %>
+<%= page_entries_info @orders %><br>
 
 <%= link_to 'New Order', new_order_path %>
