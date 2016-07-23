@@ -3,18 +3,18 @@ class SessionController < ApplicationController
   end
 
   def create
+
+    
   	@name = params[:name]
   	@password = params[:password]
   	# puts "==================#{@password}"
 
-	user = Admin.find_by_name(params[:name])
+	  user = Admin.find_by_name(params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      # puts "-------------------"
-      # puts session[:user_id]
-      # puts "--------------------"
-      redirect_to controller: 'welcome', action: 'index'
+      redirect_to new_order_path
     else
+
        render 'new'
     end
   end

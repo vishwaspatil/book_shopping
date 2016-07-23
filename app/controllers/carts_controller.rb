@@ -1,4 +1,5 @@
-class CartsController < BaseController
+class CartsController < ApplicationController
+
   rescue_from ActiveRecord::RecordNotFound, :with => :render_404
   # Render 404 page when record not found
     def render_404          
@@ -62,8 +63,10 @@ class CartsController < BaseController
   # DELETE /carts/1
   # DELETE /carts/1.json
   def destroy
+    puts "----------------------#{session[:cart_id]}"
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil
+    puts "----------------------#{session[:cart_id]}"
     respond_to do |format|
     format.html { redirect_to root_url,
     notice: 'Your cart is empty' }

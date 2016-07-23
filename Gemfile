@@ -33,6 +33,9 @@ gem 'autoprefixer-rails'
  #gem for active admin
 gem 'activeadmin', github: 'activeadmin'
 
+#gem for internationlization
+gem 'i18n', '~> 0.7.0' 
+
 #gem 'layout-generator', '~> 0.1'
 
 # Use Unicorn as the app server

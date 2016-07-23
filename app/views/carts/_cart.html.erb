@@ -14,6 +14,7 @@
 		</tr>
 		</table>
 		<%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: 'Are you sure?'}  %>
+		
 		<%= button_to 'checkout', new_session_path, {:method => :get} %>
 
 		

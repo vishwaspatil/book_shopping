@@ -21,6 +21,7 @@ class OrdersController < BaseController
   def new
    puts "----------------------#{params.inspect}" 
     puts "this is the value of cart#{@cart.line_items.inspect}"
+    
     if @cart.line_items.empty?
        render root_url     
     end
