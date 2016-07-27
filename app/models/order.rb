@@ -4,4 +4,15 @@ class Order < ActiveRecord::Base
 	PAYMENT = ['check', 'credit card', 'purchase order']
 	
 	validates :name, :email, :address, :pay_type,  presence:  :true
+
+	def process_payment(total_price, desc)
+    customer = Stripe::Customer.create email: email,
+                                       card: card_token
+
+    Stripe::Charge.create customer: customer.id,
+                          amount: total_price.to_i * 100,
+                          description: desc,
+                          currency: 'usd'
+
+  end
 end

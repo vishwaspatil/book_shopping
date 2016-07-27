@@ -43,6 +43,8 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 gem 'kaminari', '~> 0.17.0'
 #gem 'layout-generator', '~> 0.1'
 
+gem 'stripe'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

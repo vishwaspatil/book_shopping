@@ -35,17 +35,21 @@ class OrdersController < BaseController
   # POST /orders
   # POST /orders.json
   def create
+     @order = Order.new order_params.merge(email: stripe_params["stripeEmail"],
+                                                               card_token: stripe_params["stripeToken"])
 
-    @order = Order.new(order_params)    
+    # @order = Order.new(order_params)    
 
     respond_to do |format|
 
       if @order.save
+
         puts "-----------------------#{@cart.line_items}*****************"
         @line_item1 = @cart.line_items.where(:cart_id => session[:cart_id])
    
         @line_item1.update_all(order_id:  @order.id)
         session[:cart_id] = nil
+        @order.process_payment(@cart.total_cart_price,"hi test")
         puts "***************************************************************************"
         OrderNotifier.received(@order).deliver_now
         puts "*************************************************************************** "
@@ -94,6 +98,11 @@ class OrdersController < BaseController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:name, :address, :email, :pay_type)
+    end
+
+    private
+    def stripe_params
+      params.permit :stripeEmail, :stripeToken
     end
 end
 
